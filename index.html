@@ -7,6 +7,9 @@
   <title>React Advanced Lightning Talk</title>
   <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
   <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
+  <!-- Syntax highlighting theme -->
+  <link rel="stylesheet" href="night-owl.css" />
+
   <style>
     .reveal .slides section .fragment {
       opacity: 0.3;
@@ -14,6 +17,32 @@
 
     .reveal .slides section .fragment.visible {
       opacity: 1;
+    }
+
+    /* Custom syntax highlighting enhancements */
+    .reveal pre {
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .reveal pre code {
+      border-radius: 8px;
+      font-size: 0.8em;
+      line-height: 1.4;
+      max-height: 600px;
+      overflow: auto;
+    }
+
+    /* Highlight current line */
+    .reveal .hljs-ln-line.hljs-ln-n {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Better contrast for highlighted lines */
+    .reveal code[data-line-numbers] .highlight-line {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid #ffd700;
+      padding-left: 8px;
     }
   </style>
 </head>
@@ -40,7 +69,21 @@
       controls: true,
       progress: true,
       center: true,
-      transition: 'slide'
+      transition: 'slide',
+
+      // Syntax highlighting configuration
+      highlight: {
+        highlightOnLoad: true,
+        theme: 'monokai',
+        lineNumbers: true,
+        escapeHTML: false
+      },
+
+      // Markdown configuration 
+      markdown: {
+        smartypants: true,
+        breaks: true
+      }
     });
     deck.initialize();
   </script>
