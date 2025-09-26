@@ -59,6 +59,388 @@ Simple, clean, and reusable! <!-- .element: class="fragment" -->
 
 ---
 
+## React Component Anatomy
+
+Let's break down a complete React component step by step
+
+--
+
+### 1. Imports & Dependencies
+
+```javascript [1-3]
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+First, we import React hooks and external dependencies
+
+--
+
+### 2. Component Declaration & Props
+
+```javascript [5]
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+Function component that receives `userId` as a prop
+
+--
+
+### 3. State Management
+
+```javascript [6-8]
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+Three pieces of state: user data, loading status, and error handling
+
+--
+
+### 4. Side Effects (useEffect)
+
+```javascript [10-23]
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+Async data fetching that runs when `userId` changes
+
+--
+
+### 5. Conditional Rendering
+
+```javascript [25-26]
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+Early returns for loading and error states
+
+--
+
+### 6. JSX Return & Data Binding
+
+```javascript [28-33]
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+JSX template with dynamic data binding from state
+
+--
+
+### 7. Export for Reusability
+
+```javascript [37]
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+Export component for use in other parts of the application
+
+--
+
+### Complete Component Flow
+
+```javascript
+import React, { useState, useEffect } from "react";
+import "./UserProfile.css";
+import { fetchUserData } from "../api/users";
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        setLoading(true);
+        const userData = await fetchUserData(userId);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="user-profile">
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <img src={user.avatar} alt={user.name} />
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+A complete, production-ready React component! <!-- .element: class="fragment" -->
+
+---
+
 ## Advanced React Patterns
 
 <div class="fragment">
