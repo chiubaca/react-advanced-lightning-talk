@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Advanced Lightning Talk</title>
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
+  <style>
+    .reveal .slides section .fragment {
+      opacity: 0.3;
+    }
+
+    .reveal .slides section .fragment.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- Markdown slides -->
+      <section data-markdown="slides.md" data-separator="^---$" data-separator-vertical="^--$"
+        data-separator-notes="^Notes:">
+      </section>
+    </div>
+  </div>
+
+  <script type="module">
+    import Reveal from './node_modules/reveal.js/dist/reveal.esm.js';
+    import Markdown from './node_modules/reveal.js/plugin/markdown/markdown.esm.js';
+    import Highlight from './node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+    import Notes from './node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+    let deck = new Reveal({
+      plugins: [Markdown, Highlight, Notes],
+      hash: true,
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'slide'
+    });
+    deck.initialize();
+  </script>
+</body>
+
+</html>
