@@ -6,11 +6,7 @@ _Press **Space** or **→** to navigate_
 
 ---
 
-## What is React?
-
-A JavaScript library for building user interfaces
-
-Press ↓ to see more details <!-- .element: class="fragment" -->
+## `useFormState`
 
 --
 
@@ -44,18 +40,59 @@ Rich library ecosystem
 
 ---
 
-## Basic Component Example
+## Building a React Component
 
-```javascript
+Watch how we build a component step by step
+
+--
+
+<!-- .slide: data-auto-animate -->
+<pre data-id="code-animation"><code data-trim data-line-numbers>
+function Welcome() {
+  return <h1>Hello!</h1>;
+}
+</code></pre>
+
+--
+
+<!-- .slide: data-auto-animate -->
+<pre data-id="code-animation"><code data-trim data-line-numbers>
 function Welcome({ name }) {
   return <h1>Hello, {name}!</h1>;
 }
+</code></pre>
+
+--
+
+<!-- .slide: data-auto-animate -->
+<pre data-id="code-animation"><code data-trim data-line-numbers>
+function Welcome({ name, greeting = "Hello" }) {
+  return <h1>{greeting}, {name}!</h1>;
+}
 
 // Usage
-<Welcome name="React Developer" />;
-```
+<Welcome name="React Developer" />
+</code></pre>
 
-Simple, clean, and reusable! <!-- .element: class="fragment" -->
+--
+
+<!-- .slide: data-auto-animate -->
+<pre data-id="code-animation"><code data-trim data-line-numbers>
+function Welcome({ name, greeting = "Hello" }) {
+  const [isVisible, setIsVisible] = useState(true);
+  
+  return isVisible ? (
+    <h1 onClick={() => setIsVisible(false)}>
+      {greeting}, {name}!
+    </h1>
+  ) : null;
+}
+
+// Usage
+<Welcome name="React Developer" greeting="Hey" />
+</code></pre>
+
+Simple to powerful in just a few steps! <!-- .element: class="fragment" -->
 
 ---
 
