@@ -1,12 +1,12 @@
 ---
 theme: default
-background: '#2d3748'
+background: "#2d3748"
 class: text-center
 highlighter: shiki
 lineNumbers: false
 info: |
   ## React Advanced Lightning Talk
-  
+
   A presentation about advanced React features and patterns
 drawings:
   persist: false
@@ -59,6 +59,7 @@ React's fundamental strengths
 <div>
 
 ## Performance
+
 <v-click>
 
 Virtual DOM optimizations enable efficient updates
@@ -69,7 +70,8 @@ Virtual DOM optimizations enable efficient updates
 
 <div>
 
-## Ecosystem  
+## Ecosystem
+
 <v-click>
 
 Rich library ecosystem with extensive community support
@@ -107,17 +109,21 @@ function Welcome({ name }) {
 
 ```js
 function Welcome({ name, greeting = "Hello" }) {
-  return <h1>{greeting}, {name}!</h1>;
+  return (
+    <h1>
+      {greeting}, {name}!
+    </h1>
+  );
 }
 
 // Usage
-<Welcome name="React Developer" />
+<Welcome name="React Developer" />;
 ```
 
 ```js
 function Welcome({ name, greeting = "Hello" }) {
   const [isVisible, setIsVisible] = useState(true);
-  
+
   return isVisible ? (
     <h1 onClick={() => setIsVisible(false)}>
       {greeting}, {name}!
@@ -126,7 +132,7 @@ function Welcome({ name, greeting = "Hello" }) {
 }
 
 // Usage
-<Welcome name="React Developer" greeting="Hey" />
+<Welcome name="React Developer" greeting="Hey" />;
 ```
 ````
 
@@ -596,12 +602,12 @@ function Header() {
 
 # Performance Optimization
 
-| Technique | Use Case |
-|-----------|----------|
-| `React.memo` | Prevent re-renders of components |
-| `useMemo` | Memoize expensive calculations |
-| `useCallback` | Memoize function references |
-| Code Splitting | Load components on demand |
+| Technique      | Use Case                         |
+| -------------- | -------------------------------- |
+| `React.memo`   | Prevent re-renders of components |
+| `useMemo`      | Memoize expensive calculations   |
+| `useCallback`  | Memoize function references      |
+| Code Splitting | Load components on demand        |
 
 <style>
 table {
@@ -623,8 +629,10 @@ table th {
 </style>
 
 ---
+
 layout: center
 background: '#10b981'
+
 ---
 
 # Key Takeaways
@@ -634,7 +642,7 @@ background: '#10b981'
 <v-clicks>
 
 - React makes UI development predictable
-- Component composition is powerful  
+- Component composition is powerful
 - Hooks enable powerful patterns
 - Performance optimization tools are built-in
 
@@ -643,8 +651,8 @@ background: '#10b981'
 </div>
 
 ---
-layout: center
----
+
+## layout: center
 
 # Thank You!
 

@@ -13,6 +13,7 @@ A presentation about advanced React features and patterns, built with [Slidev](h
 ## 🎯 Key Highlights
 
 This presentation demonstrates:
+
 - React component evolution with animated code transitions
 - Step-by-step component anatomy breakdown
 - Advanced React patterns (Custom Hooks, Context API)
@@ -49,6 +50,7 @@ The presentation showcases Shiki Magic Move for smooth code transitions, particu
 ## 🌐 Access Points
 
 When running locally:
+
 - **Slides**: http://localhost:3030/
 - **Presenter Mode**: http://localhost:3030/presenter/
 - **Overview**: http://localhost:3030/overview/
@@ -57,6 +59,7 @@ When running locally:
 ## 🔧 Migration Notes
 
 This project was migrated from reveal.js to Slidev to take advantage of:
+
 - Better code syntax highlighting with Shiki
 - Smoother code animations with Shiki Magic Move
 - Modern Vue-based components and interactivity
