@@ -12,8 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@slidev/cli": "^52.2.4",
-    "@slidev/theme-default": "^0.25.0",
-    "shiki-magic-move": "^1.2.0"
+    "@slidev/theme-default": "^0.25.0"
   },
   "devDependencies": {
     "reveal.js": "^5.2.1"
