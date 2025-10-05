@@ -3,7 +3,7 @@ theme: default
 background: "#2d3748"
 class: text-center
 highlighter: shiki
-lineNumbers: false
+lineNumbers: true
 info: |
   ## React Advanced Lightning Talk
 
@@ -15,20 +15,17 @@ title: React Advanced Lightning Talk
 mdc: true
 ---
 
-# React Features You're (probably) not using yet.
+# React features you might not be using yet.
 
 ### A Lightning Talk ⚡
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space or → to navigate <carbon:arrow-right class="inline"/>
+    By Alex Chiu
   </span>
 </div>
 
 <div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
   <a href="https://github.com/chiubaca/react-advanced-lightning-talk" target="_blank" alt="GitHub"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
@@ -37,114 +34,158 @@ mdc: true
 
 ---
 
-# Core Features
+# `use`
 
-React's fundamental strengths
+<p class='pt-2'> </p>
 
 <v-clicks>
 
-- **Component-Based** - Build encapsulated components
-- **Virtual DOM** - Efficient updates and rendering
-- **Declarative** - Describe what you want, not how
-- **Learn Once, Write Anywhere** - Web, mobile, desktop
+- `use` is a React API that lets you read the value of a resource like a Promise or context.
 
 </v-clicks>
 
----
-
-# Why React?
-
-<div grid="~ cols-2 gap-4" class="mt-8">
-
-<div>
-
-## Performance
-
-<v-click>
-
-Virtual DOM optimizations enable efficient updates
-
-</v-click>
-
-</div>
-
-<div>
-
-## Ecosystem
-
-<v-click>
-
-Rich library ecosystem with extensive community support
-
-</v-click>
-
-</div>
-
-</div>
+<!--
+The one feature I recommend everyone to start using if they can
+-->
 
 ---
-
-# Building a React Component
-
-Watch how we build a component step by step
-
----
-
-# Component Evolution
-
-<div class="mt-8">
 
 ````md magic-move
-```js
-function Welcome() {
-  return <h1>Hello!</h1>;
+```jsx {*|6-7|10-20|21|24|26-30}
+export default function Main() {
+  return <DogPics />;
 }
-```
 
-```js
-function Welcome({ name }) {
-  return <h1>Hello, {name}!</h1>;
-}
-```
+function DogPics() {
+  const [data, setData] = useState<string[]>([]);
+  const [loading, setLoading] =  useState(true);
 
-```js
-function Welcome({ name, greeting = "Hello" }) {
+  useEffect(() => {
+    const fetchDogs = async () => {
+      try {
+        setLoading(true)
+        const dogs = await api.getImagesFromApi();
+        setData(dogs);
+        setLoading(false)
+      } catch (error) {
+        console.error("Failed to fetch dogs:", error);
+        setLoading(false)
+      }
+    };
+     fetchDogs();
+  }, []);
+
+  if (loading) return <Loader />
+
   return (
-    <h1>
-      {greeting}, {name}!
-    </h1>
+    <div>
+      {data.map((item, index) => (
+        <img key={index} src={item} className="w-32 h-32 m-2" />
+      ))}
+    </div>
+  );
+}
+```
+
+```jsx
+export default function Main() {
+  return <DogPics />;
+}
+
+function DogPics() {
+  const [data, setData] = useState<string[]>([]);
+  const [loading, setLoading] =  useState(true);
+
+  useEffect(() => {
+    const fetchDogs = async () => {
+      try {
+        setLoading(true)
+        const dogs = await api.getImagesFromApi();
+        setData(dogs);
+        setLoading(false)
+      } catch (error) {
+        console.error("Failed to fetch dogs:", error);
+        setLoading(false)
+      }
+    };
+    fetchDogs();
+  }, []);
+
+  if (loading) return <Loader />
+
+  return (
+    <div>
+      {data.map((item, index) => (
+        <img key={index} src={item} className="w-32 h-32 m-2" />
+      ))}
+    </div>
+  );
+}
+```
+
+```jsx
+export default function Main() {
+  return (
+    <div>
+      <h1 className="text-xl text-center">Best dogs</h1>
+
+      <Suspense fallback={<Loader />}>
+        <DogPics />
+      </Suspense>
+    </div>
   );
 }
 
-// Usage
-<Welcome name="React Developer" />;
-```
+function DogPics() {
+  const data = use(api.getDogsFromApi());
 
-```js
-function Welcome({ name, greeting = "Hello" }) {
-  const [isVisible, setIsVisible] = useState(true);
-
-  return isVisible ? (
-    <h1 onClick={() => setIsVisible(false)}>
-      {greeting}, {name}!
-    </h1>
-  ) : null;
+  return (
+    <div>
+      <div className="flex">
+        {data.map((item, index) => (
+          <img key={index} src={item} className="w-32 h-32 m-2" />
+        ))}
+      </div>
+    </div>
+  );
 }
-
-// Usage
-<Welcome name="React Developer" greeting="Hey" />;
 ```
 ````
 
-</div>
+---
 
-<div class="absolute bottom-10">
-  <v-click>
-    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded">
-      Simple to powerful in just a few steps!
+# You can use `use` conditionally
+
+```jsx
+function Note({ id, shouldIncludeAuthor }) {
+  const note = use(fetchNote(id));
+
+  let author = null;
+  if (shouldIncludeAuthor) {
+    author = use(fetchNoteAuthor(note.authorId));
+  }
+
+  return (
+    <div>
+      <h1>{note.title}</h1>
+      {author && <p>{author}</p>}
+      <section>{note.body}</section>
     </div>
-  </v-click>
-</div>
+  );
+}
+```
+
+---
+
+# `use` can used instead of `useContext`
+
+```jsx
+import { use } from 'react';
+
+function Button() {
+  const theme = use(ThemeContext);
+  // ...
+```
 
 ---
 
