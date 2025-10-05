@@ -179,6 +179,8 @@ function Note({ id, shouldIncludeAuthor }) {
 
 # `use` can used instead of `useContext`
 
+<div class="mt-4">
+
 ```jsx
 import { use } from 'react';
 
@@ -186,6 +188,18 @@ function Button() {
   const theme = use(ThemeContext);
   // ...
 ```
+
+</div>
+
+<v-click>
+
+<div class="mt-6">
+
+> **Note:** It's preferred to use `use` over `useContext` now as it's more flexible and has the added benefit of being able to be called conditionally if needed.
+
+</div>
+
+</v-click>
 
 ---
 
