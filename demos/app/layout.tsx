@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "React 19 Hooks",
-  description: "Demos of react 19 hooks",
+  title: "React Advanced Lightning Talk Demos",
+  description: "A collection React 19 demos",
 };
 
 export default function RootLayout({
