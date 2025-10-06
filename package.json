@@ -4,8 +4,7 @@
   "description": "React Advanced Lightning Talk | Slides & Demos",
   "scripts": {
     "presentation:dev": "npm run dev --workspace=presentation",
-    "presentation:build": "slidev build --workspace=presentation",
-    "presentation:export": "slidev export --workspace=presentation",
+    "presentation:build": "npm run build --workspace=presentation",
     "demos:dev": "npm run dev --workspace=demos",
     "demos:build": "npm run build --workspace=demos",
     "demos:start": "npm run start --workspace=demos",
