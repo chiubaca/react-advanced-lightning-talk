@@ -6,14 +6,16 @@
   "scripts": {
     "presentation:dev": "npm run dev --workspace=presentation",
     "presentation:build": "slidev build",
-    "presentation:export": "slidev export"
+    "presentation:export": "slidev export",
+    "demos:dev": "npm run dev --workspace=demos",
+    "demos:build": "npm run build --workspace=demos",
+    "demos:start": "npm run start --workspace=demos",
+    "demos:preview": "npm run preview --workspace=demos",
+    "demos:deploy": "npm run deploy --workspace=demos",
+    "demos:cf-typegen": "npm run cf-typegen --workspace=demos"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@slidev/cli": "^52.2.4",
-    "@slidev/theme-default": "^0.25.0"
-  },
   "workspaces": [
     "./presentation",
     "./demos"
