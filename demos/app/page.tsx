@@ -4,12 +4,7 @@ import Link from "next/link";
 export default function Page() {
   return (
     <div className="p-8 font-sans">
-      <h1>Next.js Sandbox Demos</h1>
-      <p>
-        Welcome to the demo collection. Explore the different React features and
-        patterns below:
-      </p>
-
+      <h1>React 19 Demos</h1>
       <div className="mt-8">
         <div className="font-mono text-sm">
           <div className="mb-2">📁 demos/</div>
