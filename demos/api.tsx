@@ -7,15 +7,21 @@ const getSlowDataFromApi = (): Promise<string> => {
   });
 };
 
+export type Message = {
+  id: string;
+  message: string;
+  status: "sent" | "pending";
+};
+
 let counter = 0;
-async function submitMessage(message: string) {
+async function submitMessage(message: string): Promise<Message> {
   counter++;
   await new Promise((res) => setTimeout(res, 2000));
   if (counter > 3) {
     throw new Error("Failed to submit message");
   }
 
-  return message;
+  return { id: counter, message, status: "sent" };
 }
 
 async function getDogsFromApi() {

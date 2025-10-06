@@ -1,15 +1,16 @@
 "use client";
 
+import { api, type Message } from "@/api";
 import { useActionState } from "react";
 
-async function action(previousState: string[], formData: FormData) {
+async function action(previousState: Message[], formData: FormData) {
   const message = formData.get("message") as string;
-
-  return [...previousState, message];
+  const submittedMessage = await api.submitMessage(message);
+  return [...previousState, submittedMessage];
 }
 
 export default function Page() {
-  const [state, formAction] = useActionState(action, []);
+  const [state, formAction, isPending] = useActionState(action, []);
 
   return (
     <div>
@@ -21,12 +22,12 @@ export default function Page() {
           placeholder="Hello!"
         />
 
-        <button className="btn" type="submit">
-          Send
+        <button className="btn" type="submit" disabled={isPending}>
+          {isPending ? "Sending..." : "Send"}
         </button>
       </form>
-      {state.map((msg, index) => (
-        <div key={index}>{msg}</div>
+      {state.map((msg) => (
+        <div key={msg.id}>{msg.message}</div>
       ))}
     </div>
   );

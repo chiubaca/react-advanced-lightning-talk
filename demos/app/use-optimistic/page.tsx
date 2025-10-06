@@ -1,73 +1,51 @@
 "use client";
 
-import { useOptimistic, useState, useRef, startTransition } from "react";
-import { api } from "@/api";
+import { api, type Message } from "@/api";
+import { useActionState, useOptimistic } from "react";
 
-type Message = {
-  text: string;
-  sending: boolean;
-  key?: number;
-};
+async function action(previousState: Message[], formData: FormData) {
+  const message = formData.get("message") as string;
+  const submittedMessage = await api.submitMessage(message);
+
+  return [...previousState, submittedMessage];
+}
 
 export default function Page() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isError, setIsError] = useState(false);
+  const [messages, formAction, isPending] = useActionState(action, []);
 
-  const [optimisticMessages, addOptimisticMessage] = useOptimistic(
+  const [optimisticState, addOptimistic] = useOptimistic(
     messages,
-    (currentMessages: Message[], newMessage: string) => [
-      ...currentMessages,
-      {
-        text: newMessage,
-        sending: true,
-      },
-    ]
+    (currentState, optimisticValue: Message) => {
+      return [...currentState, optimisticValue];
+    }
   );
 
-  async function formAction(formData: FormData) {
-    try {
-      const message = formData.get("message") as string;
-      addOptimisticMessage(message);
-      const submittedMessage = await api.submitMessage(message);
-      setMessages([
-        ...messages,
-        { text: submittedMessage, sending: false, key: Date.now() },
-      ]);
-    } catch (error) {
-      setIsError(true);
-    }
+  function handleSubmit(formData: FormData) {
+    const message = formData.get("message") as string;
+    addOptimistic({ id: Date().toString(), message, status: "pending" });
+    formAction(formData);
   }
 
   return (
     <div>
-      <form className="flex" action={formAction}>
+      <form action={handleSubmit} className="flex ">
         <input
           className="input"
           type="text"
           name="message"
-          placeholder="Add a message"
+          placeholder="Hello!"
         />
-        <button className="btn" type="submit">
-          Send
+
+        <button className="btn" type="submit" disabled={isPending}>
+          {isPending ? "Sending..." : "Send"}
         </button>
       </form>
-      {optimisticMessages.map((message, index) => (
-        <div key={index}>
-          {message.text}
-          {!!message.sending && <small> (Sending...)</small>}
+      {optimisticState.map((msg) => (
+        <div key={msg.id}>
+          {msg.message}
+          {msg.status === "sent" ? "✅" : "☑️"}
         </div>
       ))}
-      {isError && <Toast />}
     </div>
   );
 }
-
-const Toast = () => {
-  return (
-    <div className="toast toast-bottom toast-end">
-      <div className="alert alert-error">
-        <span>failed to send</span>
-      </div>
-    </div>
-  );
-};
