@@ -17,6 +17,10 @@ mdc: true
 
 # React features you might not be using yet.
 
+<v-click>
+<div class='text-center'>(probably)</div>
+</v-click>
+
 ### A Lightning Talk ⚡
 
 <div class="pt-12">
