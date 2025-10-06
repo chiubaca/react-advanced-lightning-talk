@@ -51,28 +51,28 @@ The one feature I recommend everyone to start using if they can
 ---
 
 ````md magic-move
-```jsx {*|6-7|10-20|21|24|26-30}
+```jsx {*|6-7|10-20|21|24|26-30|*}
 export default function Main() {
-  return <DogPics />;
+  return <UserImages />;
 }
 
-function DogPics() {
+function UserImages() {
   const [data, setData] = useState<string[]>([]);
   const [loading, setLoading] =  useState(true);
 
   useEffect(() => {
-    const fetchDogs = async () => {
+    const fetchUserImages = async () => {
       try {
         setLoading(true)
-        const dogs = await api.getImagesFromApi();
-        setData(dogs);
+        const images = await api.getImagesFromApi();
+        setData(images);
         setLoading(false)
       } catch (error) {
         console.error("Failed to fetch dogs:", error);
         setLoading(false)
       }
     };
-     fetchDogs();
+     fetchUserImages();
   }, []);
 
   if (loading) return <Loader />
@@ -80,43 +80,7 @@ function DogPics() {
   return (
     <div>
       {data.map((item, index) => (
-        <img key={index} src={item} className="w-32 h-32 m-2" />
-      ))}
-    </div>
-  );
-}
-```
-
-```jsx
-export default function Main() {
-  return <DogPics />;
-}
-
-function DogPics() {
-  const [data, setData] = useState<string[]>([]);
-  const [loading, setLoading] =  useState(true);
-
-  useEffect(() => {
-    const fetchDogs = async () => {
-      try {
-        setLoading(true)
-        const dogs = await api.getImagesFromApi();
-        setData(dogs);
-        setLoading(false)
-      } catch (error) {
-        console.error("Failed to fetch dogs:", error);
-        setLoading(false)
-      }
-    };
-    fetchDogs();
-  }, []);
-
-  if (loading) return <Loader />
-
-  return (
-    <div>
-      {data.map((item, index) => (
-        <img key={index} src={item} className="w-32 h-32 m-2" />
+        <img key={index} src={item} />
       ))}
     </div>
   );
@@ -127,8 +91,6 @@ function DogPics() {
 export default function Main() {
   return (
     <div>
-      <h1 className="text-xl text-center">Best dogs</h1>
-
       <Suspense fallback={<Loader />}>
         <DogPics />
       </Suspense>
@@ -137,15 +99,13 @@ export default function Main() {
 }
 
 function DogPics() {
-  const data = use(api.getDogsFromApi());
+  const data = use(api.getImagesFromApi());
 
   return (
     <div>
-      <div className="flex">
-        {data.map((item, index) => (
-          <img key={index} src={item} className="w-32 h-32 m-2" />
-        ))}
-      </div>
+      {data.map((item, index) => (
+        <img key={index} src={item} />
+      ))}
     </div>
   );
 }
@@ -720,3 +680,7 @@ Questions?
 <!--
 This is the end of the presentation. You can add speaker notes here that will only be visible in presenter mode.
 -->
+
+```
+
+```
