@@ -1,0 +1,10 @@
+{
+  "name": "react-advanced-lightning-talk",
+  "version": "1.0.0",
+  "description": "React Advanced Lightning Talk - A Slidev presentation",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export"
+  }
+}

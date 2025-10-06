@@ -4,9 +4,9 @@
   "description": "React Advanced Lightning Talk - A Slidev presentation",
   "main": "index.js",
   "scripts": {
-    "dev": "slidev",
-    "build": "slidev build",
-    "export": "slidev export"
+    "presentation:dev": "npm run dev --workspace=presentation",
+    "presentation:build": "slidev build",
+    "presentation:export": "slidev export"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,8 @@
     "@slidev/cli": "^52.2.4",
     "@slidev/theme-default": "^0.25.0"
   },
-  "devDependencies": {
-    "reveal.js": "^5.2.1"
-  }
+  "workspaces": [
+    "./presentation",
+    "./demos"
+  ]
 }
