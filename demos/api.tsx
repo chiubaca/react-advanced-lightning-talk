@@ -21,7 +21,7 @@ async function submitMessage(message: string): Promise<Message> {
     throw new Error("Failed to submit message");
   }
 
-  return { id: counter, message, status: "sent" };
+  return { id: String(counter), message, status: "sent" };
 }
 
 async function getDogsFromApi() {
