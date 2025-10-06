@@ -1,6 +1,5 @@
 ---
 theme: default
-background: "#2d3748"
 class: text-center
 highlighter: shiki
 lineNumbers: true
@@ -62,24 +61,24 @@ export default function Main() {
 
 function UserImages() {
   const [data, setData] = useState([]);
-  const [loading, setLoading] =  useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserImages = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
         const images = await api.getImagesFromApi();
         setData(images);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch dogs:", error);
-        setLoading(false)
+        setLoading(false);
       }
     };
-     fetchUserImages();
+    fetchUserImages();
   }, []);
 
-  if (loading) return <Loader />
+  if (loading) return <Loader />;
 
   return (
     <div>
@@ -192,7 +191,7 @@ function Page() {
 
 ---
 
-# `useTransition` to the rescue...
+# Consider `useTransition`
 
 ````md magic-move
 ```jsx
@@ -274,7 +273,7 @@ function Page() {
       ))}
     </form>
   );
-}
+
 ```
 
 ```jsx {*|8|11|1-5|*}
@@ -323,6 +322,20 @@ export default function Page() {
 }
 ```
 ````
+
+---
+
+# Optismistic UI
+
+```jsx
+const [optimisticState, addOptimistic] = useOptimistic(
+  state, // updateFn
+  (currentState, optimisticValue) => {
+    // write your own cutom logic to
+    // merge and return new state with optimistic value
+  }
+);
+```
 
 ---
 
