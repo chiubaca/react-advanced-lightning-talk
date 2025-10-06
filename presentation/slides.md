@@ -167,524 +167,140 @@ function Button() {
 
 ---
 
-# React Component Anatomy
+# How often have you written code like this?
 
-Let's break down a complete React component step by step
+```jsx
+function Page() {
+  const [apiData, setApiData] = useState("");
+  const [isPending, setIsPending] = useState(false);
 
----
-
-# 1. Imports & Dependencies
-
-```javascript {1-3}
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  const getDataFromApi = async () => {
+    setIsPending(true);
+    const data = await yourApi();
+    setApiData(data);
+    setIsPending(false);
+  };
 
   return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-First, we import React hooks and external dependencies
-
----
-
-# 2. Component Declaration & Props
-
-```javascript {5}
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-Function component that receives `userId` as a prop
-
----
-
-# 3. State Management
-
-```javascript {6-8}
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-Three pieces of state: user data, loading status, and error handling
-
----
-
-# 4. Side Effects (useEffect)
-
-```javascript {10-23}
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-Async data fetching that runs when `userId` changes
-
----
-
-# 5. Conditional Rendering
-
-```javascript {25-26}
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-Early returns for loading and error states
-
----
-
-# 6. JSX Return & Data Binding
-
-```javascript {28-33}
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-JSX template with dynamic data binding from state
-
----
-
-# 7. Export for Reusability
-
-```javascript {37}
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-Export component for use in other parts of the application
-
----
-
-# Complete Component Flow
-
-```javascript
-import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
-import { fetchUserData } from "../api/users";
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        setLoading(true);
-        const userData = await fetchUserData(userId);
-        setUser(userData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [userId]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return (
-    <div className="user-profile">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <img src={user.avatar} alt={user.name} />
-    </div>
-  );
-}
-
-export default UserProfile;
-```
-
-<v-click>
-
-<div class="mt-4 p-4 bg-green-100 text-green-800 rounded">
-  A complete, production-ready React component!
-</div>
-
-</v-click>
-
----
-
-# Advanced React Patterns
-
-<div class="mt-8">
-
-## 1. Custom Hooks
-
-<v-click>
-
-```javascript
-function useCounter(initialValue = 0) {
-  const [count, setCount] = useState(initialValue);
-  const increment = () => setCount((c) => c + 1);
-  return { count, increment };
-}
-```
-
-</v-click>
-
-<v-click>
-
-<div class="mt-4 text-gray-600">
-  Reusable stateful logic across components
-</div>
-
-</v-click>
-
-</div>
-
----
-
-# Context API
-
-Share data across the component tree without prop drilling
-
----
-
-# Creating Context
-
-```javascript
-const ThemeContext = createContext();
-
-function App() {
-  return (
-    <ThemeContext.Provider value="dark">
-      <Header />
-      <Main />
-    </ThemeContext.Provider>
+    <>
+      <button onClick={getDataFromApi}> Get some data </button>
+      <div> {isPending ? "Loading.." : apiData} </div>
+    </>
   );
 }
 ```
 
 ---
 
-# Using Context
+# `useTransition` to the rescue...
 
-```javascript
-function Header() {
-  const theme = useContext(ThemeContext);
-  return <header className={`header-${theme}`}>My App</header>;
+````md magic-move
+```jsx
+function Page() {
+  const [apiData, setApiData] = useState("");
+  const [isPending, setIsPending] = useState(false);
+
+  const clickHandler = async () => {
+    setIsPending(true);
+    const data = await yourApi();
+    setApiData(data);
+    setIsPending(false);
+  };
+
+  return (
+    <>
+      <button onClick={clickHandler}> Get some data </button>
+      <div> {isPending ? "Loading.." : apiData} </div>
+    </>
+  );
 }
 ```
 
----
+```jsx
+function Page() {
+  const [apiData, setApiData] = useState("");
+  const [isPending, startTransition] = useTransition();
 
-# Performance Optimization
+  const clickHandler = async () => {
+    startTransition(async () => {
+      const data = await yourApi();
+      setApiData(data);
+    });
+  };
 
-| Technique      | Use Case                         |
-| -------------- | -------------------------------- |
-| `React.memo`   | Prevent re-renders of components |
-| `useMemo`      | Memoize expensive calculations   |
-| `useCallback`  | Memoize function references      |
-| Code Splitting | Load components on demand        |
-
-<style>
-table {
-  font-size: 0.9rem;
-  margin-top: 2rem;
+  return (
+    <>
+      <button onClick={clickHandler}> Get some data </button>
+      <div> {isPending ? "Loading.." : apiData} </div>
+    </>
+  );
 }
-
-table th,
-table td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-table th {
-  font-weight: 600;
-  background: #f9fafb;
-}
-</style>
-
----
-
-layout: center
-background: '#10b981'
-
----
-
-# Key Takeaways
-
-<div class="text-white">
-
-<v-clicks>
-
-- React makes UI development predictable
-- Component composition is powerful
-- Hooks enable powerful patterns
-- Performance optimization tools are built-in
-
-</v-clicks>
-
-</div>
-
----
-
-## layout: center
-
-# Thank You!
-
-Questions?
-
-<div class="mt-8 text-sm opacity-75">
-  <p>Navigate: ← → ↑ ↓ Space | Fullscreen: F | Overview: Esc</p>
-</div>
+```
+````
 
 <!--
-This is the end of the presentation. You can add speaker notes here that will only be visible in presenter mode.
+Not a big reduction in lines of code.
+
+But this is not more idomatic way to handle the pending state of a promise within in Reat component.
+
+There are also some underhood performance benifit too. Doesnt apply to this function that is running an async function, but if the action inside the `startTransition` is computationally expensive. React will run this function without blocking any UI interactions.
 -->
 
+---
+
+# `useActionState` & form actions
+
+````md magic-move
+```jsx
+function Page() {
+  const [messages, setMessages] = useState([]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const message = formData.get("message");
+    const submittedMessage = await submitMessageToApi(message);
+    setState((previousState) => [...previousState, submittedMessage]);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="message" placeholder="Type a message..." />
+      <button type="submit">Send</button>
+
+      <h1>Messages</h1>
+      {messages.map((message, index) => (
+        <div key={index}>{message}</div>
+      ))}
+    </form>
+  );
+}
 ```
 
+```jsx {*|8|11|1-5|*}
+async function action(previousState: string[], formData: FormData) {
+  const message = formData.get("message");
+  const submittedMessage = await submitMessageToApi(message)
+  return [...previousState, submittedMessage];
+}
+
+export default function Page() {
+  const [messages, formAction] = useActionState(action, []);
+
+  return (
+    <form action={formAction}>
+      <input type="text" name="message" placeholder="Type a message..." />
+      <button type="submit">Send</button>
+
+      {messages.map((message, index) => (
+        <div key={index}>{message}</div>
+      ))}
+    </form>
+  );
+}
 ```
+````
+
+---
+
+# Thank You!
