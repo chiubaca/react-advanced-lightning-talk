@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "slidev",
     "build": "slidev build",
+    "deploy": "npx wrangler pages deploy ./dist",
     "export": "slidev export"
   },
   "dependencies": {
