@@ -61,7 +61,7 @@ export default function Main() {
 }
 
 function UserImages() {
-  const [data, setData] = useState<string[]>([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] =  useState(true);
 
   useEffect(() => {
@@ -96,13 +96,13 @@ export default function Main() {
   return (
     <div>
       <Suspense fallback={<Loader />}>
-        <DogPics />
+        <UserImages />
       </Suspense>
     </div>
   );
 }
 
-function DogPics() {
+function UserImages() {
   const data = use(api.getImagesFromApi());
 
   return (
@@ -291,6 +291,29 @@ export default function Page() {
     <form action={formAction}>
       <input type="text" name="message" placeholder="Type a message..." />
       <button type="submit">Send</button>
+
+      {messages.map((message, index) => (
+        <div key={index}>{message}</div>
+      ))}
+    </form>
+  );
+}
+```
+
+```jsx
+async function action(previousState: string[], formData: FormData) {
+  const message = formData.get("message");
+  const submittedMessage = await submitMessageToApi(message)
+  return [...previousState, submittedMessage];
+}
+
+export default function Page() {
+  const [messages, formAction, isPending] = useActionState(action, []);
+
+  return (
+    <form action={formAction}>
+      <input type="text" name="message" placeholder="Type a message..." />
+      <button type="submit" disabled={isPending}>  {isPending ? "Submitting..." : "Send"}</button>
 
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
