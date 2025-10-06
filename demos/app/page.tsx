@@ -11,40 +11,101 @@ export default function Page() {
       </p>
 
       <div className="mt-8">
-        <h2>🎯 Available Demos</h2>
+        <div className="font-mono text-sm">
+          <div className="mb-2">📁 demos/</div>
+          <div className="ml-4">
+            <div className="mb-1">📁 use-transition/</div>
+            <div className="ml-4">
+              <div>
+                <Link
+                  href="/use-transition"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+              <div className="mb-1">📁 without/</div>
+              <div className="ml-4">
+                <Link
+                  href="/use-transition/without"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+            </div>
 
-        <div className="flex flex-col gap-6 mt-4">
-          <div className="p-4 border border-gray-300 rounded-lg">
-            <h3 className="m-0 mb-2">
-              <Link
-                href="/use-transition"
-                className="no-underline text-blue-600 hover:text-blue-800"
-              >
-                UseTransition Demo →
-              </Link>
-            </h3>
-          </div>
+            <div className="mb-1">📁 use-optimistic/</div>
+            <div className="ml-4 mb-2">
+              <div>
+                <Link
+                  href="/use-optimistic"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+            </div>
 
-          <div className="p-4 border border-gray-300 rounded-lg">
-            <h3 className="m-0 mb-2">
-              <Link
-                href="/use-transition/without"
-                className="no-underline text-blue-600 hover:text-blue-800"
-              >
-                Without UseTransition Demo →
-              </Link>
-            </h3>
-          </div>
+            <div className="mb-1">📁 use/</div>
+            <div className="ml-4">
+              <div>
+                <Link href="/use" className="text-blue-600 hover:underline">
+                  page.tsx
+                </Link>
+              </div>
+              <div className="mb-1">📁 without/</div>
+              <div className="ml-4">
+                <Link
+                  href="/use/without"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+            </div>
 
-          <div className="p-4 border border-gray-300 rounded-lg">
-            <h3 className="m-0 mb-2">
-              <Link
-                href="/use-optimistic"
-                className="no-underline text-blue-600 hover:text-blue-800"
-              >
-                useOptimistic →
-              </Link>
-            </h3>
+            <div className="mb-1">📁 use-action-state/</div>
+            <div className="ml-4">
+              <div>
+                <Link
+                  href="/use-action-state"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+              <div className="mb-1">📁 without/</div>
+              <div className="ml-4">
+                <Link
+                  href="/use-action-state/without"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+            </div>
+
+            <div className="mb-1">📁 use-action-state-async/</div>
+            <div className="ml-4">
+              <div>
+                <Link
+                  href="/use-action-state-async"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+              <div className="mb-1">📁 without/</div>
+              <div className="ml-4">
+                <Link
+                  href="/use-action-state-async/without"
+                  className="text-blue-600 hover:underline"
+                >
+                  page.tsx
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
