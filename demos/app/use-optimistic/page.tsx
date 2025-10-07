@@ -1,7 +1,7 @@
 "use client";
 
+import { useOptimistic, useActionState } from "react";
 import { api, type Message } from "@/api";
-import { useActionState, useOptimistic } from "react";
 
 async function action(previousState: Message[], formData: FormData) {
   const message = formData.get("message") as string;
