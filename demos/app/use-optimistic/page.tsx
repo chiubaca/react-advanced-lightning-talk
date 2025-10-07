@@ -28,24 +28,26 @@ export default function Page() {
 
   return (
     <div>
+      <div className="chat chat-start flex flex-col gap-2 mb-4">
+        {optimisticState.map((msg) => (
+          <div key={msg.id} className="chat-bubble flex gap-1">
+            <div>{msg.message}</div>
+            <div>{msg.status === "pending" ? "☑️" : "✅"}</div>
+          </div>
+        ))}
+      </div>
       <form action={handleSubmit} className="flex ">
         <input
           className="input"
           type="text"
           name="message"
-          placeholder="Hello!"
+          placeholder="Type a message..."
         />
 
         <button className="btn" type="submit" disabled={isPending}>
-          {isPending ? "Sending..." : "Send"}
+          Send
         </button>
       </form>
-      {optimisticState.map((msg) => (
-        <div key={msg.id}>
-          {msg.message}
-          {msg.status === "pending" ? "☑️" : "✅"}
-        </div>
-      ))}
     </div>
   );
 }
