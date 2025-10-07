@@ -16,10 +16,6 @@ mdc: true
 
 # React features you might not be using yet.
 
-<v-click>
-<div class='text-center'>(probably)</div>
-</v-click>
-
 ### A Lightning Talk ⚡
 
 <div class="pt-12">
@@ -46,6 +42,21 @@ mdc: true
 - `use` is a React API that lets you read the value of a resource like a Promise or context.
 
 </v-clicks>
+
+<v-click>
+<div class="pt-10">
+
+```jsx
+import { use } from 'react';
+
+function MessageComponent({ messagePromise }) {
+const message = use(messagePromise);
+const theme = use(ThemeContext);
+// ...
+```
+
+</div>
+</v-click>
 
 <!--
 The one feature I recommend everyone to start using if they can
@@ -89,6 +100,7 @@ function UserImages() {
   );
 }
 ```
+````
 
 ```jsx
 export default function Main() {
@@ -113,7 +125,8 @@ function UserImages() {
   );
 }
 ```
-````
+
+`````
 
 ---
 
@@ -140,54 +153,7 @@ function Note({ id, shouldIncludeAuthor }) {
 
 ---
 
-# `use` can used instead of `useContext`
-
-<div class="mt-4">
-
-```jsx
-import { use } from 'react';
-
-function Button() {
-  const theme = use(ThemeContext);
-  // ...
-```
-
-</div>
-
-<v-click>
-
-<div class="mt-6">
-
-> **Note:** It's preferred to use `use` over `useContext` now as it's more flexible and has the added benefit of being able to be called conditionally if needed.
-
-</div>
-
-</v-click>
-
----
-
 # How often have you written code like this?
-
-```jsx
-function Page() {
-  const [apiData, setApiData] = useState("");
-  const [isPending, setIsPending] = useState(false);
-
-  const getDataFromApi = async () => {
-    setIsPending(true);
-    const data = await yourApi();
-    setApiData(data);
-    setIsPending(false);
-  };
-
-  return (
-    <>
-      <button onClick={getDataFromApi}> Get some data </button>
-      <div> {isPending ? "Loading.." : apiData} </div>
-    </>
-  );
-}
-```
 
 ---
 
@@ -214,6 +180,7 @@ function Page() {
   );
 }
 ```
+`````
 
 ```jsx
 function Page() {
@@ -235,7 +202,8 @@ function Page() {
   );
 }
 ```
-````
+
+`````
 
 <!--
 Not a big reduction in lines of code.
@@ -321,18 +289,18 @@ export default function Page() {
   );
 }
 ```
-````
+`````
 
 ---
 
-# Optismistic UI
+# `useO`
 
 ```jsx
 const [optimisticState, addOptimistic] = useOptimistic(
-  state, // updateFn
+  state, // the "real" state
   (currentState, optimisticValue) => {
-    // write your own cutom logic to
-    // merge and return new state with optimistic value
+    // the temporary data you want to show whilst component is transitioning
+    return; //...anything you want!
   }
 );
 ```
