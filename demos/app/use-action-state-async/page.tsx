@@ -1,9 +1,9 @@
 "use client";
 
-import { api } from "@/api";
+import { api, type Message } from "@/api";
 import { useActionState } from "react";
 
-async function action(previousState: string[], formData: FormData) {
+async function action(previousState: Message[], formData: FormData) {
   const message = formData.get("message") as string;
 
   const data = await api.submitMessage(message);
@@ -22,8 +22,8 @@ export default function Page() {
         {isPending ? "submitting..." : "submit"}
       </button>
 
-      {state.map((msg, index) => (
-        <div key={index}>{msg}</div>
+      {state.map((msg) => (
+        <div key={msg.id}>{msg.message}</div>
       ))}
     </form>
   );
