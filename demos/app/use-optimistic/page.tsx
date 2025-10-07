@@ -43,7 +43,7 @@ export default function Page() {
       {optimisticState.map((msg) => (
         <div key={msg.id}>
           {msg.message}
-          {msg.status === "sent" ? "✅" : "☑️"}
+          {msg.status === "pending" ? "☑️" : "✅"}
         </div>
       ))}
     </div>
