@@ -1,0 +1,6 @@
+{
+  "name": "react-advanced-lightning-talk-presentation",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2025-10-02",
+  "compatibility_flags": ["nodejs_compat"],
+}
