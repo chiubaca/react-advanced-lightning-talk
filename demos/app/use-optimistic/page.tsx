@@ -36,7 +36,7 @@ export default function Page() {
           </div>
         ))}
       </div>
-      <form action={handleSubmit} className="flex ">
+      <form action={handleSubmit} className="flex gap-1">
         <input
           className="input"
           type="text"
