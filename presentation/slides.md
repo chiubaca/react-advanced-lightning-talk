@@ -234,8 +234,11 @@ There are also some underhood performance benifit too. Doesnt apply to this func
 
 # `useActionState` & form actions
 
+<v-click>
+
 ````md magic-move
-```jsx
+```jsx {*|5-11|6|14|*}
+// before useActionState
 function Page() {
   const [messages, setMessages] = useState([]);
 
@@ -243,7 +246,7 @@ function Page() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const message = formData.get("message");
-    const submittedMessage = await submitMessageToApi(message);
+    const submittedMessage = await api.submitMessage(message);
     setState((previousState) => [...previousState, submittedMessage]);
   };
 
@@ -258,13 +261,14 @@ function Page() {
       ))}
     </form>
   );
-
+}
 ```
 
-```jsx {*|8|11|1-5|*}
-async function action(previousState: string[], formData: FormData) {
+```jsx {*|9|12|2-6|*}
+// with useActionState
+async function action(previousState, formData) {
   const message = formData.get("message");
-  const submittedMessage = await submitMessageToApi(message)
+  const submittedMessage = await api.submitMessage(message);
   return [...previousState, submittedMessage];
 }
 
@@ -276,6 +280,7 @@ export default function Page() {
       <input type="text" name="message" placeholder="Type a message..." />
       <button type="submit">Send</button>
 
+      <h1>Messages</h1>
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
       ))}
@@ -297,7 +302,7 @@ export default function Page() {
   return (
     <form action={formAction}>
       <input type="text" name="message" placeholder="Type a message..." />
-      <button type="submit" disabled={isPending}>  {isPending ? "Submitting..." : "Send"}</button>
+      <button type="submit" disabled={isPending}> Send </button>
 
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
@@ -307,6 +312,8 @@ export default function Page() {
 }
 ```
 ````
+
+</v-click>
 
 ---
 
@@ -325,9 +332,13 @@ const [optimisticState, addOptimistic] = useOptimistic(
 ```
 
 <v-clicks>
- - pass in your "real" state as an arg
- - create your custom update function which represents the "optimistic state
- - use `optimisticState` in your markup
+
+- pass in state as an arg for this hook to track
+
+- create your custom update function which represents the "optimistic state
+
+- use `optimisticState` in your markup
+
 </v-clicks>
 
 ---
