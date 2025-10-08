@@ -310,17 +310,25 @@ export default function Page() {
 
 ---
 
-# Optismistic UI
+# `useOptimistic`
+
+A hook to let you show temporary state whilst a component is transitioning.
 
 ```jsx
 const [optimisticState, addOptimistic] = useOptimistic(
-  state, // updateFn
+  state, // the "real" state
   (currentState, optimisticValue) => {
-    // write your own cutom logic to
-    // merge and return new state with optimistic value
+    // Optimistic function to return the temporary optimistic data
+    return; // anything you want!
   }
 );
 ```
+
+<v-clicks>
+ - pass in your "real" state as an arg
+ - create your custom update function which represents the "optimistic state
+ - use `optimisticState` in your markup
+</v-clicks>
 
 ---
 
