@@ -153,12 +153,14 @@ function Note({ id, shouldIncludeAuthor }) {
 
 # How often have you written code like this?
 
+<v-click>
+
 ```jsx {*|2-3|5-10|6|9|*}
 function Page() {
   const [apiData, setApiData] = useState("");
   const [isPending, setIsPending] = useState(false);
 
-  const getDataFromApi = async () => {
+  const clickHandler = async () => {
     setIsPending(true);
     const data = await yourApi();
     setApiData(data);
@@ -167,16 +169,18 @@ function Page() {
 
   return (
     <>
-      <button onClick={getDataFromApi}> Get some data </button>
-      <div> {isPending ? "Loading.." : apiData} </div>
+      <button onClick={clickHandler}> Get some data </button>
+      <div> {isPending ? "Loading..." : apiData} </div>
     </>
   );
 }
 ```
 
+</v-click>
+
 ---
 
-# Consider `useTransition`
+# Consider `useTransition` for this
 
 ````md magic-move
 ```jsx
@@ -290,9 +294,9 @@ export default function Page() {
 ```
 
 ```jsx
-async function action(previousState: string[], formData: FormData) {
+async function action(previousState, formData) {
   const message = formData.get("message");
-  const submittedMessage = await submitMessageToApi(message)
+  const submittedMessage = await submitMessageToApi(message);
   return [...previousState, submittedMessage];
 }
 
@@ -302,7 +306,7 @@ export default function Page() {
   return (
     <form action={formAction}>
       <input type="text" name="message" placeholder="Type a message..." />
-      <button type="submit" disabled={isPending}> Send </button>
+      <button type="submit" disabled={isPending}>Send</button>
 
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
