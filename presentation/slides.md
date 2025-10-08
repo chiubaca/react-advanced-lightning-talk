@@ -50,9 +50,9 @@ mdc: true
 import { use } from 'react';
 
 function MessageComponent({ messagePromise }) {
-const message = use(messagePromise);
-const theme = use(ThemeContext);
-// ...
+  const message = use(messagePromise);
+  const theme = use(ThemeContext); // exact same usage as useContext
+  // ...
 ```
 
 </div>
@@ -100,7 +100,6 @@ function UserImages() {
   );
 }
 ```
-````
 
 ```jsx
 export default function Main() {
@@ -125,8 +124,7 @@ function UserImages() {
   );
 }
 ```
-
-`````
+````
 
 ---
 
@@ -155,6 +153,27 @@ function Note({ id, shouldIncludeAuthor }) {
 
 # How often have you written code like this?
 
+```jsx {*|2-3|5-10|6|9|*}
+function Page() {
+  const [apiData, setApiData] = useState("");
+  const [isPending, setIsPending] = useState(false);
+
+  const getDataFromApi = async () => {
+    setIsPending(true);
+    const data = await yourApi();
+    setApiData(data);
+    setIsPending(false);
+  };
+
+  return (
+    <>
+      <button onClick={getDataFromApi}> Get some data </button>
+      <div> {isPending ? "Loading.." : apiData} </div>
+    </>
+  );
+}
+```
+
 ---
 
 # Consider `useTransition`
@@ -180,7 +199,6 @@ function Page() {
   );
 }
 ```
-`````
 
 ```jsx
 function Page() {
@@ -202,8 +220,7 @@ function Page() {
   );
 }
 ```
-
-`````
+````
 
 <!--
 Not a big reduction in lines of code.
@@ -289,18 +306,18 @@ export default function Page() {
   );
 }
 ```
-`````
+````
 
 ---
 
-# `useO`
+# Optismistic UI
 
 ```jsx
 const [optimisticState, addOptimistic] = useOptimistic(
-  state, // the "real" state
+  state, // updateFn
   (currentState, optimisticValue) => {
-    // the temporary data you want to show whilst component is transitioning
-    return; //...anything you want!
+    // write your own cutom logic to
+    // merge and return new state with optimistic value
   }
 );
 ```
