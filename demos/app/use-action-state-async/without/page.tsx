@@ -1,10 +1,10 @@
 "use client";
 
-import { api } from "@/api";
+import { api, type Message } from "@/api";
 import { useState } from "react";
 
 export default function Page() {
-  const [state, setState] = useState<string[]>([]);
+  const [state, setState] = useState<Message[]>([]);
   const [isPending, setIsPending] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -31,8 +31,8 @@ export default function Page() {
         {isPending ? "submitting..." : "submit"}
       </button>
 
-      {state.map((msg, index) => (
-        <div key={index}>{msg}</div>
+      {state.map((msg) => (
+        <div key={msg.id}>{msg.message}</div>
       ))}
     </form>
   );
