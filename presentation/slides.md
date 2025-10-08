@@ -407,6 +407,18 @@ export default function Page() {
 ```
 ````
 
+
+
+---
+transition: slide-left
+---
+
+<div class="grid place-content-center ">
+  
+  <iframe src="https://react-advanced-lightning-talk-demos.chiubaca.workers.dev/use-optimistic" height="500" width="500"/>
+  
+</div>
+
 ---
 
 # Thank You!
