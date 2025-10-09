@@ -3,20 +3,16 @@
   "version": "1.0.0",
   "description": "React Advanced Lightning Talk | Slides & Demos",
   "scripts": {
-    "presentation:dev": "npm run dev --workspace=presentation",
-    "presentation:build": "npm run build --workspace=presentation",
-    "presentation:deploy": "npm run deploy --workspace=presentation",
-    "demos:dev": "npm run dev --workspace=demos",
-    "demos:build": "npm run build --workspace=demos",
-    "demos:start": "npm run start --workspace=demos",
-    "demos:preview": "npm run preview --workspace=demos",
-    "demos:deploy": "npm run deploy --workspace=demos",
-    "demos:cf-typegen": "npm run cf-typegen --workspace=demos"
+    "presentation:dev": "pnpm --filter=presentation dev",
+    "presentation:build": "pnpm --filter=presentation build",
+    "presentation:deploy": "pnpm --filter=presentation deploy",
+    "demos:dev": "pnpm --filter=demo dev",
+    "demos:build": "pnpm --filter=demo build",
+    "demos:start": "pnpm --filter=demo start",
+    "demos:preview": "pnpm --filter=demo preview",
+    "demos:deploy": "pnpm --filter=demo deploy",
+    "demos:cf-typegen": "pnpm --filter=demo cf-typegen"
   },
   "author": "",
-  "license": "ISC",
-  "workspaces": [
-    "./presentation",
-    "./demos"
-  ]
+  "license": "ISC"
 }
