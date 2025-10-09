@@ -10,7 +10,7 @@
     "demos:build": "pnpm --filter=demo build",
     "demos:start": "pnpm --filter=demo start",
     "demos:preview": "pnpm --filter=demo preview",
-    "demos:deploy": "pnpm --filter=demo deploy",
+    "demos:deploy": "pnpm --filter=demo _deploy",
     "demos:cf-typegen": "pnpm --filter=demo cf-typegen"
   },
   "author": "",
