@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Page() {
   return (
     <div className="p-8 font-sans">
-      <h1>React 19 Demos</h1>
+      <h1>React 19 Demos test...</h1>
       <div className="mt-8">
         <div className="font-mono text-sm">
           <div className="mb-2">📁 demos/</div>
