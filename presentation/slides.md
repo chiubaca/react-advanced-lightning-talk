@@ -3,10 +3,6 @@ theme: default
 class: text-center
 highlighter: shiki
 lineNumbers: true
-info: |
-  ## React Advanced Lightning Talk
-
-  A presentation about advanced React features and patterns
 drawings:
   persist: false
 transition: slide-left
