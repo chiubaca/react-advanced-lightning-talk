@@ -402,28 +402,6 @@ export default function Page() {
 }
 ```
 
-```jsx
-export default function Page() {
-  const [messages, formAction] = useActionState(action, []);
-  const [optimisticState, addOptimistic] = useOptimistic(
-    messages,
-    (currentState, optimisticValue) => [...currentState, optimisticValue]
-  );
-
-  return (
-    <form action={formAction}>
-      <input type="text" name="message" placeholder="Type a message..." />
-      <button type="submit">Send</button>
-
-      <h1>Messages</h1>
-      {messages.map((message, index) => (
-        <div key={index}>{message}</div>
-      ))}
-    </form>
-  );
-}
-```
-
 
 ```jsx
 export default function Page() {
@@ -453,7 +431,7 @@ export default function Page() {
 }
 ```
 
-```jsx {*|3-7|9-13|23|17-22|*}
+```jsx
 
 export default function Page() {
   const [messages, formAction] = useActionState(action, []);
@@ -493,6 +471,7 @@ export default function Page() {
 }
 
 ```
+
 
 ````
 
