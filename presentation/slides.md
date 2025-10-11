@@ -489,6 +489,9 @@ title: Final demo
 
 ---
 title: Fin
+class: text-center flex flex-col items-center justify-center h-full
 ---
 
 # Thank You!
+
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG5xZ3U2cWcyeXl6dmo0bGl5cHdnZDBxMXk3czI1NHd1dGZmb2R3ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fWfowxJtHySJ0SGCgN/giphy.gif" alt="Keanu Reeves bowing" class="w-64 h-auto mx-auto mt-8" />
