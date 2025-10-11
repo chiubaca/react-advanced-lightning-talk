@@ -59,6 +59,8 @@ The one feature I recommend everyone to start using if they can
 -->
 
 ---
+title: Fetching data on mount with `use`
+---
 
 ````md magic-move
 ```jsx {*|6-7|10-20|21|24|26-30|*}
@@ -146,10 +148,15 @@ function Note({ id, shouldIncludeAuthor }) {
 ```
 
 ---
+transition: fade
+
+---
 
 # How often have you written code like this?
 
 <v-click>
+
+````md magic-move
 
 ```jsx {*|2-3|5-10|6|9|*}
 function Page() {
@@ -171,6 +178,7 @@ function Page() {
   );
 }
 ```
+````
 
 </v-click>
 
@@ -194,7 +202,7 @@ function Page() {
   return (
     <>
       <button onClick={clickHandler}> Get some data </button>
-      <div> {isPending ? "Loading.." : apiData} </div>
+      <div> {isPending ? "Loading..." : apiData} </div>
     </>
   );
 }
@@ -314,32 +322,42 @@ export default function Page() {
 ````
 
 </v-click>
-
+x
 ---
 
 # `useOptimistic`
 
 A hook to let you show temporary state whilst a component is transitioning.
 
+````md magic-move
+
 ```jsx
-const [optimisticState, addOptimistic] = useOptimistic(
-  state, // the "real" state
-  (currentState, optimisticValue) => {
-    // Optimistic function to return the temporary optimistic data
-    return; // anything you want!
+useOptimistic();
+```
+
+```jsx
+const [optimisticState, addOptimisticState] = useOptimistic();
+```
+
+```jsx
+const [state, setState] = useState(['some data'])
+const [optimisticState, addOptimisticState] = useOptimistic(
+  state
+);
+```
+
+```jsx
+const [state, setState] = useState(['some data'])
+const [optimisticState, addOptimisticState]  = useOptimistic(
+  state
+ (currentState, optimisticValue) => {
+    return[...currentState, optimisticValue]
   }
 );
 ```
 
-<v-clicks>
+````
 
-- pass in state as an arg for this hook to track
-
-- create your custom update function which represents the "optimistic state
-
-- use `optimisticState` in your markup
-
-</v-clicks>
 
 ---
 
@@ -362,11 +380,10 @@ export default function Page() {
 }
 ```
 
-```jsx
+```jsx {*|3-7|9-13|23|*}
 
 export default function Page() {
   const [messages, formAction, isPending] = useActionState(action, []);
-
   const [optimisticState, addOptimistic] = useOptimistic(
     messages,
     (currentState, optimisticValue) => [...currentState, optimisticValue]
@@ -406,7 +423,7 @@ export default function Page() {
 
 
 ---
-transition: slide-left
+title: Final demo
 ---
 
 <div class="grid place-content-center ">
@@ -415,6 +432,8 @@ transition: slide-left
   
 </div>
 
+---
+title: Fin
 ---
 
 # Thank You!
