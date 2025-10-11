@@ -90,15 +90,9 @@ function MessagesComponent({ messagePromise }) {
 <!--
 The one feature I recommend everyone to start using if they can.
 
-*click 1*
-the hook
-
-*click 2*
 You can load an unresolved promise into the hook and your component will resolve the promise upon mount
 
- 
-*click 2*
-Its a drop in replacement for useContext
+Its also a drop in replacement for useContext
 -->
 
 ---
@@ -316,6 +310,41 @@ But I also like that we have more idiomatic way to handle the pending states for
 -->
 
 ---
+title: `useActionState`
+class:  flex flex-col items-center justify-center h-full w-full
+
+---
+
+````md magic-move
+
+```jsx
+useActionState();
+```
+
+```jsx
+useActionState(fn);
+```
+
+```jsx
+useActionState(fn, initialState);
+```
+
+
+```jsx
+useActionState(fn, initialState);
+```
+
+```jsx
+const [state] = useActionState(fn, initialState);
+```
+
+```jsx
+const [state, formAction] = useActionState(fn, initialState);
+```
+
+````
+
+---
 
 # `useActionState` & form actions
 
@@ -399,7 +428,7 @@ export default function Page() {
 ````
 
 </v-click>
-x
+
 ---
 title: `useOptimistic`
 class:  flex flex-col items-center justify-center h-full w-full
@@ -410,26 +439,26 @@ class:  flex flex-col items-center justify-center h-full w-full
 ```jsx
 useOptimistic();
 ```
-
 ```jsx
-const [optimisticState, addOptimisticState] = useOptimistic();
+useOptimistic(state);
 ```
 
 ```jsx
-const [state, setState] = useState(['some data'])
-const [optimisticState, addOptimisticState] = useOptimistic(
-  state
-);
+useOptimistic(state, updatefn);
+```
+
+
+```jsx
+const [optimisticState] = useOptimistic(state, updatefn);
 ```
 
 ```jsx
-const [state, setState] = useState(['some data'])
-const [optimisticState, addOptimisticState]  = useOptimistic(
-  state
- (currentState, optimisticValue) => {
-    return[...currentState, optimisticValue]
-  }
-);
+const [optimisticState] = useOptimistic(state, updatefn);
+```
+
+
+```jsx
+const [optimisticState, addOptimisticState] = useOptimistic(state, updatefn);
 ```
 
 ````
