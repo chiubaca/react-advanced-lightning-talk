@@ -35,42 +35,41 @@
   justify-content: center;
   width: 30px;
   height: 30px;
+  /* Initial state - hidden and positioned above */
+  transform: translateY(-80px) scale(0.8);
+  opacity: 0;
 }
 
 .logo.github {
-  animation: slideCircular 3s infinite ease-in-out;
+  animation: slideCircular 6s infinite ease-in-out;
   animation-delay: 0s;
 }
 
 .logo.x {
-  animation: slideCircular 3s infinite ease-in-out;
-  animation-delay: 1s;
+  animation: slideCircular 6s infinite ease-in-out;
+  animation-delay: 2s;
   font-weight: bold;
 }
 
 .logo.bluesky {
-  animation: slideCircular 3s infinite ease-in-out;
-  animation-delay: 2s;
+  animation: slideCircular 6s infinite ease-in-out;
+  animation-delay: 4s;
 }
 
 @keyframes slideCircular {
-  0% {
+  0%, 66.67%, 100% {
     transform: translateY(-80px) scale(0.8);
     opacity: 0;
   }
-  20% {
+  5.56% {
     transform: translateY(0px) scale(1);
     opacity: 1;
   }
-  30% {
+  27.78% {
     transform: translateY(0px) scale(1);
     opacity: 1;
   }
-  45% {
-    transform: translateY(80px) scale(0.8);
-    opacity: 0;
-  }
-  100% {
+  33.33% {
     transform: translateY(80px) scale(0.8);
     opacity: 0;
   }
