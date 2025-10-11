@@ -14,18 +14,18 @@ mdc: true
 
 ### A Lightning Talk ⚡
 
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    By Alex Chiu
-  </span>
-</div>
-
 <div class="abs-br m-6 flex gap-2">
   <a href="https://github.com/chiubaca/react-advanced-lightning-talk" target="_blank" alt="GitHub"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
 </div>
+
+---
+
+# HMU
+
+<SocialContact />
 
 ---
 
