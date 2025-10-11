@@ -12,7 +12,7 @@ mdc: true
 
 # React features you might not be using yet.
 
-### A Lightning Talk ⚡
+### A lightning talk ⚡
 
 <div class="abs-br m-6 flex gap-2">
   <a href="https://github.com/chiubaca/react-advanced-lightning-talk" target="_blank" alt="GitHub"
@@ -23,7 +23,7 @@ mdc: true
 
 ---
 
-# HMU
+# hmu 👋🏼
 
 <SocialContact />
 
