@@ -9,6 +9,7 @@
         <carbon-logo-github class="logo github" />
         <div class="logo x">𝕏</div>
         <div class="logo bluesky">🦋</div>
+        <div class="logo mastodon">🐘</div>
       </div>
       <span class="text-2xl text-gray-700">/chiubaca</span>
     </div>
@@ -47,29 +48,58 @@
 
 .logo.x {
   animation: slideCircular 4s infinite ease-in-out;
-  animation-delay: 1.33s;
+  animation-delay: 1s;
   font-weight: bold;
 }
 
 .logo.bluesky {
   animation: slideCircular 4s infinite ease-in-out;
-  animation-delay: 2.67s;
+  animation-delay: 2s;
+}
+
+.logo.mastodon {
+  animation: slideCircular 4s infinite ease-in-out;
+  animation-delay: 3s;
 }
 
 @keyframes slideCircular {
-  0%, 66.67%, 100% {
+  0%, 75%, 100% {
     transform: translateY(-80px) scale(0.8);
     opacity: 0;
   }
-  8.33% {
+  2.5% {
+    transform: translateY(-60px) scale(0.85);
+    opacity: 0.2;
+  }
+  5% {
+    transform: translateY(-40px) scale(0.9);
+    opacity: 0.4;
+  }
+  7.5% {
+    transform: translateY(-20px) scale(0.95);
+    opacity: 0.7;
+  }
+  10% {
     transform: translateY(0px) scale(1);
     opacity: 1;
+  }
+  21% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+  22.5% {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0.7;
+  }
+  23.75% {
+    transform: translateY(40px) scale(0.9);
+    opacity: 0.4;
+  }
+  24.5% {
+    transform: translateY(60px) scale(0.85);
+    opacity: 0.2;
   }
   25% {
-    transform: translateY(0px) scale(1);
-    opacity: 1;
-  }
-  33.33% {
     transform: translateY(80px) scale(0.8);
     opacity: 0;
   }
