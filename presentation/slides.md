@@ -380,29 +380,105 @@ export default function Page() {
 }
 ```
 
-```jsx {*|3-7|9-13|23|*}
+```jsx
+export default function Page() {
+  const [messages, formAction] = useActionState(action, []);
+  const [optimisticState, addOptimistic] = useOptimistic(
+    messages,
+    (currentState, optimisticValue) => [...currentState, optimisticValue]
+  );
+
+  return (
+    <form action={formAction}>
+      <input type="text" name="message" placeholder="Type a message..." />
+      <button type="submit">Send</button>
+
+      <h1>Messages</h1>
+      {messages.map((message, index) => (
+        <div key={index}>{message}</div>
+      ))}
+    </form>
+  );
+}
+```
+
+```jsx
+export default function Page() {
+  const [messages, formAction] = useActionState(action, []);
+  const [optimisticState, addOptimistic] = useOptimistic(
+    messages,
+    (currentState, optimisticValue) => [...currentState, optimisticValue]
+  );
+
+  return (
+    <form action={formAction}>
+      <input type="text" name="message" placeholder="Type a message..." />
+      <button type="submit">Send</button>
+
+      <h1>Messages</h1>
+      {messages.map((message, index) => (
+        <div key={index}>{message}</div>
+      ))}
+    </form>
+  );
+}
+```
+
+
+```jsx
+export default function Page() {
+  const [messages, formAction] = useActionState(action, []);
+  const [optimisticState, addOptimistic] = useOptimistic(
+    messages,
+    (currentState, optimisticValue) => [...currentState, optimisticValue]
+  );
+  
+  function handleSubmit(formData: FormData) {
+    const message = formData.get("message")
+    addOptimistic({ id: uuid(), message, status: "pending" });
+    formAction(formData);
+  }  
+
+  return (
+    <form action={handleSubmit}>
+      <input type="text" name="message" placeholder="Type a message..." />
+      <button type="submit">Send</button>
+
+      <h1>Messages</h1>
+      {messages.map((message, index) => (
+        <div key={index}>{message}</div>
+      ))}
+    </form>
+  );
+}
+```
+
+```jsx {*|3-7|9-13|23|17-22|*}
 
 export default function Page() {
-  const [messages, formAction, isPending] = useActionState(action, []);
+  const [messages, formAction] = useActionState(action, []);
   const [optimisticState, addOptimistic] = useOptimistic(
     messages,
     (currentState, optimisticValue) => [...currentState, optimisticValue]
   );
 
   function handleSubmit(formData: FormData) {
-    const message = formData.get("message") as string;
+    const message = formData.get("message")
     addOptimistic({ id: uuid(), message, status: "pending" });
     formAction(formData);
   }
 
   return (
     <>
+
       {optimisticState.map((msg) => (
           <div key={msg.id}>
             <div>{msg.message}</div>
             <div>{msg.status === "pending" ? "☑️" : "✅"}</div>
           </div>
-        ))}
+        ))
+      }
+
       <form action={handleSubmit}>
         <input
            type="text" name="message" placeholder="Type a message..."
@@ -416,8 +492,8 @@ export default function Page() {
   );
 }
 
-
 ```
+
 ````
 
 
