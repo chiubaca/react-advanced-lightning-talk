@@ -22,7 +22,7 @@ mdc: true
 </div>
 
 <!--
-React 19 was released nearly a year ago now with some really useful new APIs, but i dont see devs reaching for them. 
+React 19 was released nearly a year ago now with some really useful new APIs, but I don't see devs reaching for them. 
 
 So here are some newish APIs which I think you should consider trying, if you are not already. And if you are, I hope you still learn something new!?
 -->
@@ -38,7 +38,7 @@ I'm Alex btw.
 
 I'm a SWE at Zoopla.
 
-Mostly Bluesky these days. but you can find me around on the interwebs.
+Mostly Bluesky these days. but you can find me around on various socials.
 -->
 
 ---
@@ -189,6 +189,17 @@ function Note({ id, shouldIncludeAuthor }) {
   );
 }
 ```
+
+<!--
+Consider this example where you want to make an API call conditionally based on a prop.
+
+Does this break the rules of React hooks?
+
+Reacts answer is no. Becasue `use` is not technically a hook, it is listed as an `api` in the docs.
+
+...
+-->
+
 ---
 title: `useTransition`
 class: text-center flex flex-col items-center justify-center h-full w-full
@@ -294,12 +305,14 @@ function Page() {
 ```
 ````
 
+
 <!--
-Not a big reduction in lines of code.
+Not a big reduction in lines of code. So why is this better?
 
-But this is not more idiomatic way to handle the pending state of a promise within in React component.
+Performance. This particular example is a little bit contrived. But a component like a type-ahead which needs to sort a big array of data. There are a lot of under-the-hood to schedule the execution of these functions when at the most optimal time on a users deviceto reduce any jank block ui interactions.
 
-There are also some under-the-hood performance benefit too. doesn't apply to this function that is running an async function, but if the action inside the `startTransition` is computationally expensive. React will run this function without blocking any UI interactions.
+
+But I also like that we have more idiomatic way to handle the pending states for async operations too.
 -->
 
 ---
