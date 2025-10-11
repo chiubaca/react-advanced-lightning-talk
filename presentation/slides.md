@@ -31,27 +31,54 @@ mdc: true
 
 # `use`
 
-<p class='pt-2'> </p>
-
-<v-clicks>
+<v-click>
 
 - `use` is a React API that lets you read the value of a resource like a Promise or context.
 
-</v-clicks>
+</v-click>
 
 <v-click>
-<div class="pt-10">
+
+````md magic-move
 
 ```jsx
 import { use } from 'react';
 
-function MessageComponent({ messagePromise }) {
-  const message = use(messagePromise);
-  const theme = use(ThemeContext); // exact same usage as useContext
-  // ...
+function MessagesComponent() {
+   use();
+}
 ```
 
-</div>
+```jsx
+import { use } from 'react';
+
+function MessagesComponent({ messagePromise }) {
+  const message = use(messagePromise);
+}
+```
+
+```jsx
+import { use } from 'react';
+
+function MessagesComponent({ messagePromise }) {
+  const message = use(messagePromise);
+
+  const theme = use(ThemeContext);
+}
+```
+
+```jsx
+import { use } from 'react';
+
+function MessagesComponent({ messagePromise }) {
+  const message = use(messagePromise);
+  
+  const theme = use(ThemeContext); // drop in replacement for useContext()
+}
+```
+
+````
+
 </v-click>
 
 <!--
