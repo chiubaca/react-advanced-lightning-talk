@@ -21,45 +21,53 @@ mdc: true
   </a>
 </div>
 
+<!--
+React 19 was released nearly a year ago now with some really useful new APIs, but i dont see devs reaching for them. 
+
+So here are some newish APIs which I think you should consider trying, if you are not already. And if you are, I hope you still learn something new!?
+-->
+
 ---
 
 # hmu 👋🏼
 
 <SocialContact />
 
+<!--
+I'm Alex btw.
+
+I'm a SWE at Zoopla.
+
+Mostly Bluesky these days. but you can find me around on the interwebs.
+-->
+
+---
+title: `use`
+class: flex flex-col items-center justify-center h-full
 ---
 
-# `use`
-
-<v-click>
-
-- `use` is a React API that lets you read the value of a resource like a Promise or context.
-
-</v-click>
 
 <v-click>
 
 ````md magic-move
 
 ```jsx
-import { use } from 'react';
+use();
+```
 
+```jsx
 function MessagesComponent() {
    use();
 }
 ```
 
 ```jsx
-import { use } from 'react';
-
 function MessagesComponent({ messagePromise }) {
   const message = use(messagePromise);
 }
 ```
 
 ```jsx
-import { use } from 'react';
-
 function MessagesComponent({ messagePromise }) {
   const message = use(messagePromise);
 
@@ -68,8 +76,6 @@ function MessagesComponent({ messagePromise }) {
 ```
 
 ```jsx
-import { use } from 'react';
-
 function MessagesComponent({ messagePromise }) {
   const message = use(messagePromise);
   
@@ -82,7 +88,17 @@ function MessagesComponent({ messagePromise }) {
 </v-click>
 
 <!--
-The one feature I recommend everyone to start using if they can
+The one feature I recommend everyone to start using if they can.
+
+*click 1*
+the hook
+
+*click 2*
+You can load an unresolved promise into the hook and your component will resolve the promise upon mount
+
+ 
+*click 2*
+Its a drop in replacement for useContext
 -->
 
 ---
@@ -91,7 +107,7 @@ title: Fetching data on mount with `use`
 
 ````md magic-move
 ```jsx {*|6-7|10-20|21|24|26-30|*}
-export default function Main() {
+function Main() {
   return <UserImages />;
 }
 
@@ -127,7 +143,7 @@ function UserImages() {
 ```
 
 ```jsx
-export default function Main() {
+function Main() {
   return (
     <div>
       <Suspense fallback={<Loader />}>
@@ -153,7 +169,7 @@ function UserImages() {
 
 ---
 
-# You can use `use` conditionally
+# PRO TIP : You can use `use` conditionally
 
 ```jsx
 function Note({ id, shouldIncludeAuthor }) {
@@ -173,13 +189,34 @@ function Note({ id, shouldIncludeAuthor }) {
   );
 }
 ```
+---
+title: `useTransition`
+class: text-center flex flex-col items-center justify-center h-full w-full
+---
+
+
+````md magic-move
+
+```jsx
+useTransition();
+```
+
+```jsx
+const [isPending] =  useTransition();
+```
+
+```jsx
+const [isPending, startTransition] = useTransition();
+```
+
+````
 
 ---
 transition: fade
 
 ---
 
-# How often have you written code like this?
+# Without `useTransition`
 
 <v-click>
 
@@ -211,7 +248,7 @@ function Page() {
 
 ---
 
-# Consider `useTransition` for this
+# With `useTransition`
 
 ````md magic-move
 ```jsx
@@ -235,12 +272,12 @@ function Page() {
 }
 ```
 
-```jsx
+```jsx {*|3|6-9|*}
 function Page() {
   const [apiData, setApiData] = useState("");
   const [isPending, startTransition] = useTransition();
 
-  const clickHandler = async () => {
+  const clickHandler = () => {
     startTransition(async () => {
       const data = await yourApi();
       setApiData(data);
@@ -260,9 +297,9 @@ function Page() {
 <!--
 Not a big reduction in lines of code.
 
-But this is not more idomatic way to handle the pending state of a promise within in Reat component.
+But this is not more idiomatic way to handle the pending state of a promise within in React component.
 
-There are also some underhood performance benifit too. Doesnt apply to this function that is running an async function, but if the action inside the `startTransition` is computationally expensive. React will run this function without blocking any UI interactions.
+There are also some under-the-hood performance benefit too. doesn't apply to this function that is running an async function, but if the action inside the `startTransition` is computationally expensive. React will run this function without blocking any UI interactions.
 -->
 
 ---
@@ -351,10 +388,9 @@ export default function Page() {
 </v-click>
 x
 ---
-
-# `useOptimistic`
-
-A hook to let you show temporary state whilst a component is transitioning.
+title: `useOptimistic`
+class:  flex flex-col items-center justify-center h-full w-full
+---
 
 ````md magic-move
 
