@@ -41,19 +41,19 @@
 }
 
 .logo.github {
-  animation: slideCircular 6s infinite ease-in-out;
+  animation: slideCircular 4s infinite ease-in-out;
   animation-delay: 0s;
 }
 
 .logo.x {
-  animation: slideCircular 6s infinite ease-in-out;
-  animation-delay: 2s;
+  animation: slideCircular 4s infinite ease-in-out;
+  animation-delay: 1.33s;
   font-weight: bold;
 }
 
 .logo.bluesky {
-  animation: slideCircular 6s infinite ease-in-out;
-  animation-delay: 4s;
+  animation: slideCircular 4s infinite ease-in-out;
+  animation-delay: 2.67s;
 }
 
 @keyframes slideCircular {
@@ -61,11 +61,11 @@
     transform: translateY(-80px) scale(0.8);
     opacity: 0;
   }
-  5.56% {
+  8.33% {
     transform: translateY(0px) scale(1);
     opacity: 1;
   }
-  27.78% {
+  25% {
     transform: translateY(0px) scale(1);
     opacity: 1;
   }
