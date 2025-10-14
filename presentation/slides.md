@@ -55,33 +55,27 @@ class: flex flex-col items-center justify-center h-full
 use();
 ```
 
+
 ```jsx
-function MessagesComponent() {
-   use();
-}
+use(promise);
 ```
 
 ```jsx
-function MessagesComponent({ messagePromise }) {
-  const message = use(messagePromise);
-}
+const resolvedPromise = use(promise);
 ```
 
 ```jsx
-function MessagesComponent({ messagePromise }) {
-  const message = use(messagePromise);
-
-  const theme = use(ThemeContext);
-}
-```
-
-```jsx
-function MessagesComponent({ messagePromise }) {
   const message = use(messagePromise);
   
-  const theme = use(ThemeContext); // drop in replacement for useContext()
-}
+  const theme = use(ThemeContext); 
 ```
+
+```jsx
+  const message = use(messagePromise);
+  // drop in replacement for useContext()
+  const theme = use(ThemeContext);
+```
+
 
 ````
 
@@ -136,14 +130,12 @@ function UserImages() {
 }
 ```
 
-```jsx
+```jsx {*|10|13-17|2-5|*}
 function Main() {
   return (
-    <div>
-      <Suspense fallback={<Loader />}>
-        <UserImages />
-      </Suspense>
-    </div>
+    <Suspense fallback={<Loader />}>
+      <UserImages />
+    </Suspense>
   );
 }
 
@@ -351,7 +343,7 @@ const [state, formAction] = useActionState(fn, initialState);
 <v-click>
 
 ````md magic-move
-```jsx {*|5-11|6|14|*}
+```jsx {*|5-11|6|7-10|14|*}
 // before useActionState
 function Page() {
   const [messages, setMessages] = useState([]);
@@ -464,6 +456,8 @@ const [optimisticState, addOptimisticState] = useOptimistic(state, updatefn);
 ````
 
 
+---
+title: `useOptimistic` in action
 ---
 
 ````md magic-move
