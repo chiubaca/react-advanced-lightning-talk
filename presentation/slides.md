@@ -29,7 +29,7 @@ So here are some newish APIs which I think you should consider trying, if you ar
 
 ---
 
-# hmu 👋🏼
+# hey 👋🏼
 
 <SocialContact />
 

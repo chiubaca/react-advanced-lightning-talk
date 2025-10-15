@@ -15,6 +15,7 @@
     </div>
 
   </div>
+  <img src="/me-qr.png" alt="Avatar" class="w-32 h-32 mb-4 bottom-0 right-0 absolute m-2" />
 </template>
 
 <style scoped>
