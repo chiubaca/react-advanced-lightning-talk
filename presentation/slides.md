@@ -46,8 +46,8 @@ title: `use`
 class: flex flex-col items-center justify-center h-full
 ---
 
+<div style="--slidev-code-font-size: 24px; --slidev-code-line-height: 30px;">
 
-<v-click>
 
 ````md magic-move
 
@@ -79,7 +79,7 @@ const resolvedPromise = use(promise);
 
 ````
 
-</v-click>
+</div>
 
 <!--
 The one feature I recommend everyone to start using if they can.
@@ -191,7 +191,7 @@ title: `useTransition`
 class: text-center flex flex-col items-center justify-center h-full w-full
 ---
 
-
+<div style="--slidev-code-font-size: 24px; --slidev-code-line-height: 30px;">
 ````md magic-move
 
 ```jsx
@@ -207,6 +207,7 @@ const [isPending, startTransition] = useTransition();
 ```
 
 ````
+</div>
 
 ---
 transition: fade
@@ -307,6 +308,8 @@ class:  flex flex-col items-center justify-center h-full w-full
 
 ---
 
+<div style="--slidev-code-font-size: 24px; --slidev-code-line-height: 30px;">
+
 ````md magic-move
 
 ```jsx
@@ -335,6 +338,7 @@ const [state, formAction] = useActionState(fn, initialState);
 ```
 
 ````
+</div>
 
 ---
 
@@ -427,6 +431,8 @@ title: `useOptimistic`
 class:  flex flex-col items-center justify-center h-full w-full
 ---
 
+<div style="--slidev-code-font-size: 20px; --slidev-code-line-height: 27px;">
+
 ````md magic-move
 
 ```jsx
@@ -455,7 +461,7 @@ const [optimisticState, addOptimisticState] = useOptimistic(state, updatefn);
 ```
 
 ````
-
+</div>
 
 ---
 title: `useOptimistic` in action
