@@ -396,6 +396,7 @@ export default function Page() {
 ```
 
 ```jsx
+// with useActionState
 async function action(previousState, formData) {
   const message = formData.get("message");
   const submittedMessage = await submitMessageToApi(message);
